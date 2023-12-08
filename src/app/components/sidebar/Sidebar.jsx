@@ -9,13 +9,17 @@ import Wallet from "../assets/icons/Wallet.png";
 import Wallet1 from "../assets/icons/Wallet1.png";
 import Earth from "../assets/icons/Earth.png";
 import Earth1 from "../assets/icons/Earth1.png";
+import SWAP from "../assets/icons/SWAP.png";
+import SWAP1 from "../assets/icons/SWAP1.png";
 import Infornation from "../assets/icons/Infornation.png";
 import Infornation1 from "../assets/icons/Infornation1.png";
 import { AiOutlineMenu } from "react-icons/ai";
 import { IoMdClose } from "react-icons/io";
+
 const Sidebar = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [hoveredItem, setHoveredItem] = useState(null);
+  const [hoveredItem, setHoveredItem] = useState("dashboard");
+  const [selectedItem, setSelectedItem] = useState("dashboard");
 
   const menuItems = [
     {
@@ -30,7 +34,7 @@ const Sidebar = () => {
     },
     {
       label: "Swap & Bridge",
-      icon: { default: null, hover: null },
+      icon: { default: SWAP, hover: SWAP1 },
       id: "swapBridge",
     },
   ];
@@ -39,9 +43,22 @@ const Sidebar = () => {
     setHoveredItem(itemId);
   };
 
+  const handleMenuClick = (itemId) => {
+    setSelectedItem(itemId);
+    setIsMenuOpen(false);
+  };
+
   const toggleMenu = () => {
     setIsMenuOpen(!isMenuOpen);
   };
+
+  useEffect(() => {
+    setHoveredItem(selectedItem);
+  }, [selectedItem]);
+
+  useEffect(() => {
+    setSelectedItem("dashboard");
+  }, []);
 
   return (
     <>
@@ -55,16 +72,15 @@ const Sidebar = () => {
             <div className="p-10 my-5">
               <Image src={mainlogo} width={200} height={200} alt="BLOKC logo" />
             </div>
-            <div className="text-[#B1A6F8] flex flex-col justify-start gap-10 mb-5">
+            <div className="text-[#B1A6F8] flex flex-col justify-start gap-10 ">
               <ul className="menu text-center">
                 {menuItems.map((item) => (
-                  <li
-                    key={item.id}
-                    onClick={item.id !== "swapBridge" ? toggleMenu : undefined}
-                  >
+                  <li key={item.id} onClick={() => handleMenuClick(item.id)}>
                     <div
-                      className={`ml-12 flex items-center gap-3 ${
-                        hoveredItem === item.id ? "hovered" : ""
+                      className={`ml-12 flex items-center gap-2 ${
+                        hoveredItem === item.id && selectedItem === item.id
+                          ? "hovered"
+                          : null
                       }`}
                       onMouseEnter={() => handleHover(item.id)}
                       onMouseLeave={() => handleHover(null)}
@@ -73,16 +89,14 @@ const Sidebar = () => {
                         {item.icon.default && (
                           <Image
                             src={
-                              hoveredItem === item.id
+                              hoveredItem === item.id ||
+                              selectedItem === item.id
                                 ? item.icon.hover
                                 : item.icon.default
                             }
                             alt={item.label}
                             height="10px"
                           />
-                        )}
-                        {item.icon.default === null && (
-                          <IoSwapHorizontal size={24} />
                         )}
                       </div>
                       <div>
@@ -93,9 +107,12 @@ const Sidebar = () => {
                 ))}
               </ul>
             </div>
-            <div className="p-5">
-              <div className="border-t border-[#FFFFFF] mb-5"></div>
+            <div className="p-8">
+              <hr></hr>
             </div>
+            {/*<div className="p-5">
+              <div className="border-t border-[#FFFFFF] mb-5"></div>
+            </div>*/}
             <div className="flex flex-col justify-start gap-10 text-[#B1A6F8]">
               <ul className="menu text-center">
                 <li onClick={toggleMenu}>

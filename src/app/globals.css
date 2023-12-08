@@ -2,9 +2,14 @@
 @tailwind components;
 @tailwind utilities;
 
+@import url("https://fonts.googleapis.com/css2?family=Jakarta+Sans:wght@400;700&display=swap");
+
+/* Apply the font globally */
+
 body {
   scrollbar-color: #2100ec #1e1e1e; /* The first color is for the thumb, the second is for the track */
   scrollbar-width: thin; /* Set the width of the scrollbar */
+  font-family: "Jakarta Sans", sans-serif;
 }
 
 /* Define the style for the scrollbar thumb (handle) */
@@ -103,10 +108,10 @@ body::-webkit-scrollbar-track {
 }
 
 .menu > li:hover::after {
-  top: 58px;
+  top: 62px;
   left: -1px; /* Adjusted position for the left side */
   height: 80px;
-  width: 48px;
+  width: 40px;
   border-top-left-radius: 80px; /* Adjusted border radius for the left side */
   -moz-border-top-left-radius: 80px;
   -webkit-border-top-left-radius: 80px;

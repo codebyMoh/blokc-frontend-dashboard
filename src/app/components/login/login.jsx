@@ -196,7 +196,7 @@ const Login = ({ setOpenlogin }) => {
       };
       ecdcfunction();
     }
-  }, [setAccountAddress, web3AuthSigner]);
+  }, [setAccountAddress, setEcdsaProvider, web3AuthSigner]);
 
   const handleClose = () => {
     setOpenlogin(false);
@@ -223,10 +223,14 @@ const Login = ({ setOpenlogin }) => {
             </div>
             <div className="flex flex-col space-y-5">
               <button
-                className="shadow-lg shadow-indigo-500/40  bg-black text-white py-3 rounded-2xl"
-                onClick={login}
+                className="shadow-lg shadow-indigo-500/40 flex justify-center items-center  bg-black text-white py-3 rounded-2xl"
+                onClick={!isLoading ? login : null}
               >
-                {!isLoading ? "Google Login" : <ClipLoader color="#f9f9f9" />}
+                {!isLoading ? (
+                  "Google Login"
+                ) : (
+                  <ClipLoader color="#f9f9f9" size={22} />
+                )}
               </button>
               <button className="bg-blue-500 shadow-lg shadow-blue-500/50 text-white py-3 rounded-2xl">
                 Facebook Login
@@ -239,9 +243,9 @@ const Login = ({ setOpenlogin }) => {
         </div>
 
         {/* Close button */}
-        <button className="close-button" onClick={handleClose}>
+        {/*<button className="close-button" onClick={handleClose}>
           <IoMdClose size={25} />
-        </button>
+        </button>*/}
       </div>
     </div>
   );
