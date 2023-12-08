@@ -1,0 +1,203 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  scrollbar-color: #2100ec #1e1e1e; /* The first color is for the thumb, the second is for the track */
+  scrollbar-width: thin; /* Set the width of the scrollbar */
+}
+
+/* Define the style for the scrollbar thumb (handle) */
+body::-webkit-scrollbar {
+  width: 8px; /* Set the width of the scrollbar */
+}
+
+body::-webkit-scrollbar-thumb {
+  background-color: rgb(175, 175, 175); /* Color of the scrollbar thumb */
+  border-radius: 25px; /* Border radius of the scrollbar thumb */
+}
+
+body::-webkit-scrollbar-track {
+  background-color: #e0e0e0; /* Color of the scrollbar track */
+}
+/*.menu {
+  list-style-type: none;
+  width: full;
+  border-radius: 20px;
+  padding: 30px 30px 0px 0px;
+}
+
+.menu li {
+  position: relative;
+  padding: 5px;
+  border-radius: 10px 0 0 10px;
+}
+
+.menu li:hover {
+  background: white;
+  border-radius: 0 20px 20px 0;
+  padding: 10px;
+}
+
+.menu li:hover:after,
+.menu li:hover:before {
+  content: "";
+  position: absolute;
+  width: 10px;
+  height: 20px;
+  left: 0px;
+}
+
+.menu li:hover:after {
+  top: -10px;
+  background: radial-gradient(circle at top right, blue 10px, white 11px);
+}
+
+.menu li:hover:before {
+  bottom: -10px;
+  background: radial-gradient(circle at bottom right, blue 10px, white 11px);
+}*/
+/*.menu {
+  background: #75ddbd;
+  padding: 40px 0 40px 20px;
+  list-style-type: none;
+  width: 200px;
+  position: relative;
+}*/
+.menu > li {
+  padding: 15px;
+  cursor: pointer;
+  position: relative;
+  width: 280px;
+}
+
+.menu > li:hover::before,
+.menu > li:hover::after {
+  content: "";
+  position: absolute;
+}
+
+.menu > li:hover {
+  background: white;
+  border-radius: 0 60px 60px 0; /* Adjusted border-radius for the left side */
+  width: 260px;
+  color: black;
+  font-weight: bold;
+}
+
+.menu > li:hover > a {
+  color: #ffa90a;
+}
+
+.menu > li:hover::before {
+  top: -80px;
+  left: -1px; /* Adjusted position for the left side */
+  height: 80px;
+  width: 40px;
+  border-bottom-left-radius: 80px; /* Adjusted border radius for the left side */
+  -moz-border-bottom-left-radius: 80px;
+  -webkit-border-bottom-left-radius: 80px;
+  -webkit-box-shadow: 0 40px 0 0 white;
+  -moz-box-shadow: 0 40px 0 0 white;
+  box-shadow: 0 40px 0 0 white;
+}
+
+.menu > li:hover::after {
+  top: 58px;
+  left: -1px; /* Adjusted position for the left side */
+  height: 80px;
+  width: 48px;
+  border-top-left-radius: 80px; /* Adjusted border radius for the left side */
+  -moz-border-top-left-radius: 80px;
+  -webkit-border-top-left-radius: 80px;
+  -webkit-box-shadow: 0 -40px 0 0 white;
+  -moz-box-shadow: 0 -40px 0 0 white;
+  box-shadow: 0 -40px 0 0 white;
+}
+@media (max-width: 768px) {
+  .menu > li {
+    width: auto; /* Allow the width to adjust based on content */
+  }
+
+  .menu > li:hover {
+    background: none; /* Remove background color on hover for small screens */
+  }
+
+  .menu > li:hover > a {
+    color: red; /* Change text color on hover for small screens */
+  }
+
+  .menu > li:hover::before,
+  .menu > li:hover::after {
+    display: none; /* Hide pseudo-elements on hover for small screens */
+  }
+}
+
+.popup-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.7); /* Semi-transparent background */
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 10; /* Higher z-index for the popup */
+}
+
+.popup {
+  background: #fff;
+  padding: 20px;
+  border-radius: 20px;
+  position: relative;
+  display: flex;
+}
+
+.popup-content {
+  display: flex;
+  width: 100%;
+}
+
+.popup-left {
+  flex: 1;
+}
+
+.popup-image {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.popup-right {
+  flex: 1;
+  padding: 20px;
+}
+
+/* Close button style */
+.close-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background: #fff;
+  border: none;
+  padding: 10px;
+  cursor: pointer;
+  border-radius: 5px;
+}
+
+/* Media query for small screens */
+@media (max-width: 768px) {
+  .popup {
+    flex-direction: column; /* Stack content vertically on small screens */
+  }
+
+  .popup-content {
+    flex-direction: column;
+    /* Stack content vertically on small screens */
+  }
+
+  .popup-right {
+    padding: 20px; /* Adjust padding for small screens */
+  }
+}
